@@ -1,3 +1,6 @@
 numpy
 matplotlib
 torch
+torch-summary
+scikit-learn
+pandas

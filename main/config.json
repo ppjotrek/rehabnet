@@ -1,0 +1,16 @@
+{
+    "root_dir" : "C:\\Users\\piotr\\Python\\rehabnet\\",
+    "raw_data_path" : "data\\",
+    "processed_data_path" : "dataset\\",
+    "num_epochs" : 100,
+    "batch_size" : 32,
+    "learning_rate" : 0.001,
+    "num_classes" : 10,
+    "num_channels" : 8,
+    "num_features" : 16,
+    "state_dicts_folder" : "main\\state_dicts\\",
+    "logs_folder" : "main\\logs\\",
+    "training_path" : "main\\data.csv",
+    "eval_path" : "main\\eval.csv",
+    "class_to_id" : "{'IDLE': 0, 'FD': 1, 'HandOpen': 1, 'FH': 2, 'FL': 3, 'FS': 4, 'EX': 5, 'WR': 6, 'WS': 7, 'WP': 8, 'WU': 9}"
+}

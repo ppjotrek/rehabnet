@@ -1,4 +1,3 @@
-import scipy
 import pandas as pd
 import numpy as np
 import torch
@@ -72,3 +71,26 @@ class emg_dataset(torch.utils.data.Dataset):
         labels = self.class_to_idx_map[str(labels)]
         labels = torch.tensor(labels)
         return data, labels
+    
+def train(model, dataloader, criteria, optimizer, epochs=10, device="cpu"):
+    model.train()
+    acc_history = []
+    for epoch in range(epochs):
+        running_corrects = 0
+        predictions = 0
+        print(f"Epoch {epoch+1}/{epochs}")
+        for i, (data, target) in enumerate(dataloader):
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            for i in range(len(output)):
+                if torch.argmax(output[i]) == target[i]:
+                    running_corrects += 1
+            loss = criteria(output, target)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            predictions += len(data)
+        accuracy = (running_corrects/predictions)*100
+        acc_history.append(accuracy)
+        print(f"Loss: {loss.item()}, accuracy: {accuracy}, corrects: {running_corrects}")
+    return acc_history
